@@ -135,14 +135,111 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // --- DATA ---
-        // Estructura de datos mejorada para incluir sexo
-        const masterMemberData = [
-            { name: "RODRIGO EDGARDO GARCES GUERRERO", sexo: "HOMBRE" }, { name: "XIMENA ODMETTE ARAVENA QUINTANA", sexo: "MUJER" }, { name: "CARLOS ALVAREZ SANTULLANO BUSCH", sexo: "HOMBRE" }, { name: "JESSICA ALEJANDRA ALVAREZ RUIZ", sexo: "MUJER" }, { name: "ROGERTH ALEJANDRO BENAVIDES SANDOVAL", sexo: "HOMBRE" }, { name: "GIANINNA PAZ CARE TERÁN", sexo: "MUJER" }, { name: "GLORIA SCHOPF KLENNER", sexo: "MUJER" }, { name: "ROBERTO CARABANTE CHAMIA", sexo: "HOMBRE" }, { name: "PABLO ANDRÉS VARAS SIRIANY", sexo: "HOMBRE" }, { name: "EDUARDO RODOLFO SALAZAR MATUS", sexo: "HOMBRE" }, { name: "GABRIELA LORENA ARAYA VASQUEZ", sexo: "MUJER" }, { name: "PATRICIA LORENA MELLA RETAMAL", sexo: "MUJER" }, { name: "CECILIA SALAZAR MATUS", sexo: "MUJER" }, { name: "SANDRA OVANDO VIDAL", sexo: "MUJER" }, { name: "IRIS LLANARETT PÜSCHEL GARNICA", sexo: "MUJER" }, { name: "SANDRA BERNARDA FARIAS PINO", sexo: "MUJER" }, { name: "FELIPE ANDRÉS AGUILAR VARGAS", sexo: "HOMBRE" }, { name: "JACQUELINE FUENTES PEREZ", sexo: "MUJER" }, { name: "ALEJANDRO BELTRAN GONZALEZ", sexo: "HOMBRE" }, { name: "GERMÁN ADOLFO BIELEFELDT VAN OOSTERWIJK", sexo: "HOMBRE" }, { name: "JOSE LUIS GALLARDO ROJAS", sexo: "HOMBRE" }, { name: "KAREN ALEJANDRA HERNANDEZ URIBE", sexo: "MUJER" }, { name: "MARIANNE MAKARENA CARRASCO MUÑOZ", sexo: "MUJER" }, { name: "ALEJANDRA AREVALO", sexo: "MUJER" }, { name: "DANIEL ANTONIO BAHAMONDE VALDEBENITO", sexo: "HOMBRE" }, { name: "EVELYN PAULINA ROMERO VELOSO", sexo: "MUJER" }, { name: "JOHANA ALEJANDRA MATUS BAHAMONDE", sexo: "MUJER" }, { name: "JORGE SEBASTIÁN ROJAS PACHECO", sexo: "HOMBRE" }, { name: "BAIRON ARIEL PÉREZ MANRÍQUEZ", sexo: "HOMBRE" }, { name: "NICOLE ALEJANDRA MORALES GARCÍA", sexo: "MUJER" }, { name: "JORGE ANDRÉS ESPINOZA VERGARA", sexo: "HOMBRE" }, { name: "NATALI ALEJANDRA MARTÍNEZ NAGUIL", sexo: "MUJER" }, { name: "JORGE ANDRÉS CATALÁN NEGRON", sexo: "HOMBRE" }, { name: "PAULA RUIZ LOZANO", sexo: "MUJER" }, { name: "CECILIA DEL CARMEN CAUCAO PAILLAN", sexo: "MUJER" }, { name: "NATALIA CARRASCO MANCILLA", sexo: "MUJER" }, { name: "CATHARINA VALERIA BIERMA HIDALGO", sexo: "MUJER" }, { name: "FABIÁN OSVALDO GAMBOA ROJAS", sexo: "HOMBRE" }, { name: "ÁLVARO JAVIER ROMÁN CASTILLO", sexo: "HOMBRE" }, { name: "YOHANA ANALIZ SANCHEZ GONZÁLEZ", sexo: "MUJER" }, { name: "KATTYA ESTEFANNY CANCINO AGÜERO", sexo: "MUJER" }, { name: "SOFÍA PAZ PACHECO OJEDA", sexo: "MUJER" }, { name: "JAVIERA BELÉN MUÑOZ VARGAS", sexo: "MUJER" }, { name: "ANDREA OJEDA", sexo: "MUJER" }, { name: "JOAQUÍN ANTONIO MELÉNDEZ PAIVA", sexo: "HOMBRE" }, { name: "JOHANA REBECA MANCILLA OLIVA", sexo: "MUJER" }, { name: "DANIELA MAKARENA L'HUISSIER PACHECO", sexo: "MUJER" }, { name: "FABIÁN BASCUR MONTENEGRO", sexo: "HOMBRE" }, { name: "MARCELO ISAIAS SILVA DIAZ", sexo: "HOMBRE" }, { name: "DARLING PATRICIA PALMA PEÑAILILLO", sexo: "MUJER" }, { name: "IGNACIA ANDREA PACHECO OJEDA", sexo: "MUJER" }, { name: "DANIELA ALEJANDRA NAUTO HERNÁNDEZ", sexo: "MUJER" }, { name: "ALEX JAVIER ASTETE RODRÍGUEZ", sexo: "HOMBRE" }, { name: "IGNACIO ARANEDA ALARCÓN", sexo: "HOMBRE" }, { name: "MATIAS FERNANDO FLORES BARRÍA", sexo: "HOMBRE" }, { name: "FRANCISCA CAROLINA MIGUEZ SALOM", sexo: "MUJER" }, { name: "JORGE ABEL HENRIQUEZ VARGAS", sexo: "HOMBRE" }, { name: "CINTIA ABIGAIL LOBOS CÁRDENAS", sexo: "MUJER" }, { name: "ESTELA BELÉN ESPARZA ALVAREZ", sexo: "MUJER" }, { name: "EDUARDO FELIPE CADAGAN VIDAL", sexo: "HOMBRE" }, { name: "INES SOLEDAD PAREDES MARTINEZ", sexo: "MUJER" }, { name: "MARÍA EUGENIA ALVAREZ LUCERO", sexo: "MUJER" }, { name: "BEATRIZ CONSUELO TEUBER GARRIDO", sexo: "MUJER" }
+        const masterMemberData = [ { name: "RODRIGO EDGARDO GARCES GUERRERO", sexo: "HOMBRE" }, { name: "XIMENA ODMETTE ARAVENA QUINTANA", sexo: "MUJER" }, { name: "CARLOS ALVAREZ SANTULLANO BUSCH", sexo: "HOMBRE" }, { name: "JESSICA ALEJANDRA ALVAREZ RUIZ", sexo: "MUJER" }, { name: "ROGERTH ALEJANDRO BENAVIDES SANDOVAL", sexo: "HOMBRE" }, { name: "GIANINNA PAZ CARE TERÁN", sexo: "MUJER" }, { name: "GLORIA SCHOPF KLENNER", sexo: "MUJER" }, { name: "ROBERTO CARABANTE CHAMIA", sexo: "HOMBRE" }, { name: "PABLO ANDRÉS VARAS SIRIANY", sexo: "HOMBRE" }, { name: "EDUARDO RODOLFO SALAZAR MATUS", sexo: "HOMBRE" }, { name: "GABRIELA LORENA ARAYA VASQUEZ", sexo: "MUJER" }, { name: "PATRICIA LORENA MELLA RETAMAL", sexo: "MUJER" }, { name: "CECILIA SALAZAR MATUS", sexo: "MUJER" }, { name: "SANDRA OVANDO VIDAL", sexo: "MUJER" }, { name: "IRIS LLANARETT PÜSCHEL GARNICA", sexo: "MUJER" }, { name: "SANDRA BERNARDA FARIAS PINO", sexo: "MUJER" }, { name: "FELIPE ANDRÉS AGUILAR VARGAS", sexo: "HOMBRE" }, { name: "JACQUELINE FUENTES PEREZ", sexo: "MUJER" }, { name: "ALEJANDRO BELTRAN GONZALEZ", sexo: "HOMBRE" }, { name: "GERMÁN ADOLFO BIELEFELDT VAN OOSTERWIJK", sexo: "HOMBRE" }, { name: "JOSE LUIS GALLARDO ROJAS", sexo: "HOMBRE" }, { name: "KAREN ALEJANDRA HERNANDEZ URIBE", sexo: "MUJER" }, { name: "MARIANNE MAKARENA CARRASCO MUÑOZ", sexo: "MUJER" }, { name: "ALEJANDRA AREVALO", sexo: "MUJER" }, { name: "DANIEL ANTONIO BAHAMONDE VALDEBENITO", sexo: "HOMBRE" }, { name: "EVELYN PAULINA ROMERO VELOSO", sexo: "MUJER" }, { name: "JOHANA ALEJANDRA MATUS BAHAMONDE", sexo: "MUJER" }, { name: "JORGE SEBASTIÁN ROJAS PACHECO", sexo: "HOMBRE" }, { name: "BAIRON ARIEL PÉREZ MANRÍQUEZ", sexo: "HOMBRE" }, { name: "NICOLE ALEJANDRA MORALES GARCÍA", sexo: "MUJER" }, { name: "JORGE ANDRÉS ESPINOZA VERGARA", sexo: "HOMBRE" }, { name: "NATALI ALEJANDRA MARTÍNEZ NAGUIL", sexo: "MUJER" }, { name: "JORGE ANDRÉS CATALÁN NEGRON", sexo: "HOMBRE" }, { name: "PAULA RUIZ LOZANO", sexo: "MUJER" }, { name: "CECILIA DEL CARMEN CAUCAO PAILLAN", sexo: "MUJER" }, { name: "NATALIA CARRASCO MANCILLA", sexo: "MUJER" }, { name: "CATHARINA VALERIA BIERMA HIDALGO", sexo: "MUJER" }, { name: "FABIÁN OSVALDO GAMBOA ROJAS", sexo: "HOMBRE" }, { name: "ÁLVARO JAVIER ROMÁN CASTILLO", sexo: "HOMBRE" }, { name: "YOHANA ANALIZ SANCHEZ GONZÁLEZ", sexo: "MUJER" }, { name: "KATTYA ESTEFANNY CANCINO AGÜERO", sexo: "MUJER" }, { name: "SOFÍA PAZ PACHECO OJEDA", sexo: "MUJER" }, { name: "JAVIERA BELÉN MUÑOZ VARGAS", sexo: "MUJER" }, { name: "ANDREA OJEDA", sexo: "MUJER" }, { name: "JOAQUÍN ANTONIO MELÉNDEZ PAIVA", sexo: "HOMBRE" }, { name: "JOHANA REBECA MANCILLA OLIVA", sexo: "MUJER" }, { name: "DANIELA MAKARENA L'HUISSIER PACHECO", sexo: "MUJER" }, { name: "FABIÁN BASCUR MONTENEGRO", sexo: "HOMBRE" }, { name: "MARCELO ISAIAS SILVA DIAZ", sexo: "HOMBRE" }, { name: "DARLING PATRICIA PALMA PEÑAILILLO", sexo: "MUJER" }, { name: "IGNACIA ANDREA PACHECO OJEDA", sexo: "MUJER" }, { name: "DANIELA ALEJANDRA NAUTO HERNÁNDEZ", sexo: "MUJER" }, { name: "ALEX JAVIER ASTETE RODRÍGUEZ", sexo: "HOMBRE" }, { name: "IGNACIO ARANEDA ALARCÓN", sexo: "HOMBRE" }, { name: "MATIAS FERNANDO FLORES BARRÍA", sexo: "HOMBRE" }, { name: "FRANCISCA CAROLINA MIGUEZ SALOM", sexo: "MUJER" }, { name: "JORGE ABEL HENRIQUEZ VARGAS", sexo: "HOMBRE" }, { name: "CINTIA ABIGAIL LOBOS CÁRDENAS", sexo: "MUJER" }, { name: "ESTELA BELÉN ESPARZA ALVAREZ", sexo: "MUJER" }, { name: "EDUARDO FELIPE CADAGAN VIDAL", sexo: "HOMBRE" }, { name: "INES SOLEDAD PAREDES MARTINEZ", sexo: "MUJER" }, { name: "MARÍA EUGENIA ALVAREZ LUCERO", sexo: "MUJER" }, { name: "BEATRIZ CONSUELO TEUBER GARRIDO", sexo: "MUJER" }, { name: "JUAN FLORES", sexo: "HOMBRE" }, { name: "DANIEL BAHAMONDES", sexo: "HOMBRE" }, { name: "EVELYN ROMERO", sexo: "MUJER" }, { name: "DANIELA NAUTO", sexo: "MUJER" }, { name: "BAIRON PEREZ", sexo: "HOMBRE" }, { name: "NICOL MORALES", sexo: "MUJER" }, { name: "NATALIA POLETH CARRASCO", sexo: "MUJER" }, { name: "ANDREA RIOS", sexo: "MUJER" }, { name: "PAULA RUIZ", sexo: "MUJER" }, { name: "MARIANNE CARRASCO", sexo: "MUJER" }, { name: "ALEJANDRA ODETTE OVANDO VIDAL", sexo: "MUJER" }, { name: "CARLA LORETO BERNIER RAMIREZ", sexo: "MUJER" }, { name: "CRISTINA ALEJANDRA OVALLE ORTIZ", sexo: "MUJER" }, { name: "RENE IGNACIO ASENJO TRIVINO", sexo: "HOMBRE" } ];
+
+        const rawData = [
+            { integrante: "IGNACIA PACHECO", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "ALVARO JAVIER ROMAN CASTILLO", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "GABRIELA LORENA ARAYA VASQUEZ", meses: 1, meses_de_pago: "ENE", estado: "membresia" },
+            { integrante: "JOHANA REBECA MANCILLA OLIVA", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "PATRICIA LORENA MELLA RETAMAL", meses: 2, meses_de_pago: "ENE-FEB", estado: "activo" },
+            { integrante: "ESTELA ESPARZA", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "DANIEL BAHAMONDES", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "EVELYN ROMERO", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "CECILIA DEL CARMEN CUCUAO", meses: 2, meses_de_pago: "ENE-FEB", estado: "activo" },
+            { integrante: "DANIELA NAUTO", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "CECILIA SALAZAR MATUS", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "BAIRON PEREZ", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "NICOL MORALES", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "ALEX JAVIER ASTETE RODRIGUEZ", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "JOHANA MATUS BAHAMONDES", meses: 2, meses_de_pago: "ENE-FEB", estado: "activo" },
+            { integrante: "FABIAN BASCUR MONTENEGRO", meses: 1, meses_de_pago: "ENE-FEB", estado: "activo" },
+            { integrante: "DANIELA L'HUISSIER", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "EDUARDO SALAZAR MATUS", meses: 2, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "INES SOLEDAD PAREDES MARTINEZ", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "JACQUELINNE DEL CARMEN FUENTES", meses: 3, meses_de_pago: "ENE-FEB-MAR", estado: "activo" },
+            { integrante: "JUAN FLORES", meses: 2, meses_de_pago: "ENE-FEB", estado: "activo" },
+            { integrante: "NATALIA POLETH CARRASCO", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "EDUARDO FELIPE CADAGAN", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "CATHARINA VALERIA BIERMA HIDALGO", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "GIANINNA PAZ CARE TERÁN", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "JORGE ESPINOZA", meses: 2, meses_de_pago: "ENE-FEB", estado: "membresia" },
+            { integrante: "ALEX JAVIER ASTETE RODRIGUEZ", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "GABRIELA LORENA ARAYA VASQUEZ", meses: 1, meses_de_pago: "FEB", estado: "membresia" },
+            { integrante: "ALVARO JAVIER ROMAN CASTILLO", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "JOHANA REBECA MANCILLA OLIVA", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "EDUARDO FELIPE CADAGAN", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "DANIELA NAUTO", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "SANDRA BERNARDA FARIAS PINO", meses: 1, meses_de_pago: "ENE", estado: "membresia" },
+            { integrante: "BAIRON PEREZ", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "NICOL MORALES", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "JACQUELINNE DEL CARMEN FUENTES", meses: 2, meses_de_pago: "ABR-MAY", estado: "activo" },
+            { integrante: "RENE IGNACIO ASENJO TRIVINO", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "DANIEL BAHAMONDES", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "EVELYN ROMERO", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "CECILIA SALAZAR MATUS", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "DARLING PALMA", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "ALEJANDRA AREVALO", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "INES SOLEDAD PAREDES MARTINEZ", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "MARIA EUGENIA ALVAREZ", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "NATALI MARTINEZ", meses: 2, meses_de_pago: "ENE-FEB", estado: "activo" },
+            { integrante: "EDUARDO SALAZAR MATUS", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "CECILIA DEL CARMEN CUCUAO", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "PATRICIA LORENA MELLA RETAMAL", meses: 2, meses_de_pago: "MAR-ABR", estado: "activo" },
+            { integrante: "BEATRIZ TEUBER", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "JORGE ESPINOZA", meses: 2, meses_de_pago: "MAR-ABR", estado: "membresia" },
+            { integrante: "IGNACIA PACHECO", meses: 1, meses_de_pago: "FEB", estado: "activo" },
+            { integrante: "SOFIA PACHECO", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "ANDREA RIOS", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "MARIA EUGENIA ALVAREZ", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "ALEX JAVIER ASTETE RODRIGUEZ", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "GABRIELA LORENA ARAYA VASQUEZ", meses: 1, meses_de_pago: "MAR", estado: "membresia" },
+            { integrante: "ALVARO JAVIER ROMAN CASTILLO", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "JOHANA REBECA MANCILLA OLIVA", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "NATALIA POLETH CARRASCO", meses: 2, meses_de_pago: "FEB-MAR", estado: "membresia" },
+            { integrante: "BAIRON PEREZ", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "NICOL MORALES", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "DANIEL BAHAMONDES", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "EVELYN ROMERO", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "SANDRA BERNARDA FARIAS PINO", meses: 2, meses_de_pago: "FEB-MAR", estado: "membresia" },
+            { integrante: "EDUARDO FELIPE CADAGAN", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "CECILIA SALAZAR MATUS", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "DANIELA NAUTO", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "DARLING PALMA", meses: 1, meses_de_pago: "ENE", estado: "activo" },
+            { integrante: "PAULA RUIZ", meses: 2, meses_de_pago: "ENE-FEB", estado: "activo" },
+            { integrante: "JOHANA MATUS BAHAMONDES", meses: 2, meses_de_pago: "MAR-ABR-MAY", estado: "activo" },
+            { integrante: "GIANINNA PAZ CARE TERÁN", meses: 2, meses_de_pago: "FEB-MAR", estado: "activo" },
+            { integrante: "BEATRIZ TEUBER", meses: 2, meses_de_pago: "MAR-ABR", estado: "activo" },
+            { integrante: "RENE IGNACIO ASENJO TRIVINO", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "JORGE ESPINOZA", meses: 2, meses_de_pago: "MAY-JUN", estado: "membresia" },
+            { integrante: "MARIANNE CARRASCO", meses: 2, meses_de_pago: "ENE-FEB", estado: "membresia" },
+            { integrante: "MARIANNE CARRASCO", meses: 2, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "EDUARDO SALAZAR MATUS", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "GABRIELA LORENA ARAYA VASQUEZ", meses: 1, meses_de_pago: "ABR", estado: "membresia" },
+            { integrante: "ALEX JAVIER ASTETE RODRIGUEZ", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "JOHANA REBECA MANCILLA OLIVA", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "ALVARO JAVIER ROMAN CASTILLO", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "DANIEL BAHAMONDES", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "EVELYN ROMERO", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "DANIELA NAUTO", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "PATRICIA LORENA MELLA RETAMAL", meses: 2, meses_de_pago: "MAY-JUN", estado: "activo" },
+            { integrante: "CECILIA DEL CARMEN CUCUAO", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "BAIRON PEREZ", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "NICOL MORALES", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "INES SOLEDAD PAREDES MARTINEZ", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "PAULA RUIZ", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "SANDRA BERNARDA FARIAS PINO", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "ALEJANDRA AREVALO", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "IGNACIA PACHECO", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "SOFIA PACHECO", meses: 1, meses_de_pago: "MAR", estado: "activo" },
+            { integrante: "ALEJANDRA ODETTE OVANDO VIDAL", meses: 3, meses_de_pago: "ABR", estado: "membresia" },
+            { integrante: "CECILIA SALAZAR MATUS", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "CARLA LORETO BERNIER RAMIREZ", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "CECILIA DEL CARMEN CUCUAO", meses: 3, meses_de_pago: "MAY", estado: "membresia" },
+            { integrante: "RENE IGNACIO ASENJO TRIVINO", meses: 1, meses_de_pago: "ABR", estado: "activo" },
+            { integrante: "MARIANNE CARRASCO", meses: 2, meses_de_pago: "ABR-MAY", estado: "activo" }
         ];
-        
-        // Datos de pago iniciales. Ahora incluyen un 'estado'.
-        const rawData = [ { integrante: "IGNACIA PACHECO", meses: 1, meses_de_pago: "ENE", estado: 'activo' }, { integrante: "JOHANA REBECA MANCILLA OLIVA", meses: 1, meses_de_pago: "ENE", estado: 'activo' }, { integrante: "PATRICIA LORENA MELLA RETAMAL", meses: 2, meses_de_pago: "ENE-FEB", estado: 'activo' }, { integrante: "CECILIA DEL CARMEN CUCUAO", meses: 2, meses_de_pago: "ENE-FEB", estado: 'activo' }, { integrante: "GABRIELA LORENA ARAYA VASQUEZ", meses: 1, meses_de_pago: "ENE", estado: 'membresia' }, { integrante: "JORGE ESPINOZA", meses: 2, meses_de_pago: "ENE-FEB", estado: 'membresia' }, { integrante: "GIANINNA PAZ CARE TERÁN", meses: 2, meses_de_pago: "FEB-MAR", estado: 'activo' }, { integrante: "BEATRIZ TEUBER", meses: 2, meses_de_pago: "MAR-ABR", estado: 'activo' } ];
-        
+
         // --- GLOBALS & DOM ELEMENTS ---
         const VALOR_ACTIVO = 10000;
         const VALOR_MEMBRESIA = 5000;
@@ -172,7 +269,7 @@
             rawData.forEach(record => {
                 if (!record.integrante || record.meses === 0) return;
                 const normalizedName = normalizeName(record.integrante);
-                if (!paymentStatus[normalizedName]) return; // Solo procesar pagos de miembros en la lista maestra
+                if (!paymentStatus[normalizedName]) return;
                 
                 let startMonthIndex = monthMap[record.meses_de_pago.split('-')[0].toUpperCase()] ?? -1;
                 if (startMonthIndex === -1) return;
@@ -242,7 +339,6 @@
             mesInicioPago: document.getElementById('mes-inicio-pago')
         };
         
-        // Poblar el select de meses una sola vez
         monthNames.forEach((name, index) => {
             const option = document.createElement('option');
             option.value = index;
@@ -271,7 +367,6 @@
                     modal.mesInicioPago.value = 0;
                 }
                 
-                // Disparar manualmente el change para establecer el valor inicial de la cuota
                 modal.estadoPago.dispatchEvent(new Event('change'));
                 paymentModalInstance.show();
             }
