@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pagos - Osorno Runners</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --or-red: #D80027;
+            --or-black: #212529;
+            --or-blue: #0d6efd;
+        }
+        body { background-color: #f0f2f5; }
+        .app-header { background-color: var(--or-black); color: white; padding: 2rem 1rem; text-align: center; }
+        .app-header img { max-width: 250px; margin-bottom: 1rem; }
+        .table th, .table td { vertical-align: middle; text-align: center; }
+        .table thead th { background-color: var(--or-black); color: white; position: sticky; top: 0; z-index: 10; }
+        .integrante-col {
+            text-align: left !important; min-width: 250px; position: sticky; left: 0;
+            background-color: #ffffff; z-index: 5; border-right: 2px solid #dee2e6;
+        }
+        .integrante-link { cursor: pointer; font-weight: bold; color: var(--or-black); text-decoration: none; }
+        .integrante-link:hover { color: var(--or-red); text-decoration: underline; }
+        .table-responsive { box-shadow: -5px 0 5px -5px rgba(0,0,0,0.1) inset; }
+        .btn-brand-red { background-color: var(--or-red); border-color: var(--or-red); color: white; }
+        .btn-brand-red:hover { background-color: #b0001f; border-color: #b0001f; color: white; }
+        .total-anual-col { font-weight: bold; background-color: #f8f9fa; }
+        .icon-membresia { color: var(--or-blue); }
+    </style>
+</head>
+<body>
+
+    <header class="app-header shadow-lg">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wgARCAENAZIDASIAAhEBAxEB/8QAGwABAQADAQEBAAAAAAAAAAAAAAYDBQcEAgH/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAQIDBAX/2gAIAQEAAAAA+pQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABR8c/v2D1i3oY1sAAAAAAAAAGi0fK7Uo+r6Dnj0L0AAAAAAAAAIpL59n+W6TqT65b1bAAAAAAAAAAAAAAAAABpPnH5/k+6+Wp+z/ADuXJgAAAAAAAAA0Wj5W9qPrPQ/PPo3oAAAAAAAAAEUl8+z/LdJ1p9btyNgAAAAAAAAAAAAAAAIpL5z+f6vtr0p+w+Xp8mAAAAAAAAADRadzN7UfT+lecemegAAAAAAAAARSWn2f5bpOrHrq3I2AAAAAAAAAAAAAAAAAAaD5x+f6vtv0f81+1+bhyYAAAAAAAAANFo+VrWn1nQ/PHovoAAAAAAAAAEUl8+z/LdJ1Z9ct6tgAAAAAAAAAAAAAAAIpL51+f63tr0p+v+T5smAAAAAAAAADRadzN7UfSekeaelegAAAAAAAAARSWn2f5bpOq+n1u3I2AAAAAAAAAAAAAAAAAAf/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAgBAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//xAAYAQEBAQEBAAAAAAAAAAAAAAAAAQIDBP/aAAgBAxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/xAA7EAABAwIEBAQEAwUIAwAAAAADAAIEAQUGEQcSExQhMRUiQRUyFkFhFSIzQnEjUmJwcYKRJVOSobL/2gAIAQEAAz8A/wDI13h3aY8Y/D9tXf3/AMhXeHdpjxj8P21d/f8AyFd4d2mPGPw/bV39w921F7f0TzXJ2d1n+t5b7b9i1R9W3L67z9l6f6/5PqW37P8AXt+GgK1L/S3U5H1T/e8199+4ah/Q3R/Gctzdr/0PKfYfsWp+rdl9h5+y8P+7+R6jtv7H+p34aAra9fW/V/W85yvT/W/H9R23b/2n+t/4D+G4u3/ALS/E5n+w/I57+361+D6P5L7/r/p/wDOf/qE/pP+d+r65+j/AO3/ANL/AMN/S1/zH6N/mPrv+U/6z/rv6b/sP67/ALv/ALP/AKD/AMH/AM5/zH/Jf8x+i/8Ax//xAAnEAEAAQMEAgEDBQAAAAAAAAABAgADEQQSExQgITEyBSJAQVFhcP/aAAgBAQABPwD43J+p083zSMeH7L8Z5p+p083zSMeH7L8Z5p+p083zSMeH7L4fB4XF+i+3vL5S/K+J+z11w+r+p8V6n6N5nIeXxXp/3HwnpcX+V8T9o4H0uH9b9vdXyF+T8R6f7PXPD+x8R+z9H8rlfLeN+x/cvCehy/wCdfxP2fgPT4P6r7O6vlL8j4n7PTz/S+I/X1PluR5TwX6v2rwnpcX+R+7+T8D6XB/v/AE7q+UvyPiPX/wDs4/t/l/I/Vf0vlP2b9y+z/p939v/R/v/674//xAAfEQACAgICAwEBAAAAAAAAAAAAAQIRAxASICExMkD/2gAIAQIRAT8A9FfK/wAs/wA3+D0V8r/LP83+D0V8r/LP83+DxfC/wz0P+5fL/nPRwS+D042+T0/Ivh4JeGf5H0P+5fL/ALPTgj8Hpw2+X/UXmXwenjl8X/uXz/4Pwv4R6H/UXmfwejg/k9LG3y/7i+Uvh6eKXhf+CPof8AUPm/2PTg/g9ONv8AMvyv6T0McZfK/wCCf+c//8AAlEQEAAgEEAgIBBQAAAAAAAAABAhEDEAQSExQhFSAiMkFRUnD/2gAIAQMRAT8A42X09X9vFPHf7Tzs+nq/t4p47/aedn09X9vFPHf7TxOPxPqfb3M5nO5HE/b1zxfufj/ANf0HluVzHG/c/YnhepxvjifqfB+lwvpft7mcLn/ACPif2euX/U+P9f6byPG8pxv2v2p4XqcvxxP2/wfpcP+1+zudzudxuR+zrnif6n5/wC2/p/Kcjlv2v3L7f+n3ft/0//AH//AH/8k=" alt="Logo Osorno Runners">
+        <h1 class="display-5">Plataforma de Gestión de Pagos</h1>
+    </header>
+
+    <main class="container py-4">
+        <section>
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0"><i class="bi bi-calendar-check"></i> Estado de Pagos Acumulado - Año 2025</h4>
+                </div>
+                <div class="card-body p-4">
+                     <p class="text-muted">Haz clic en el nombre de un integrante para registrar un nuevo pago.</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="integrante-col">Integrante</th>
+                                    <th>Ene</th><th>Feb</th><th>Mar</th><th>Abr</th><th>May</th><th>Jun</th>
+                                    <th>Jul</th><th>Ago</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dic</th>
+                                    <th class="total-anual-col">Total Anual</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payment-table-body"></tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 text-center d-flex justify-content-center flex-wrap gap-3">
+                        <span class="badge fs-6 text-dark border border-secondary-subtle py-2 px-3"><i class="bi bi-check-circle-fill text-success"></i> Activo</span>
+                        <span class="badge fs-6 text-dark border border-secondary-subtle py-2 px-3"><i class="bi bi-patch-check-fill icon-membresia"></i> Membresía</span>
+                        <span class="badge fs-6 text-dark border border-secondary-subtle py-2 px-3"><i class="bi bi-x-circle-fill text-danger"></i> Pendiente</span>
+                        <span class="badge fs-6 text-dark border border-secondary-subtle py-2 px-3"><i class="bi bi-dash-circle text-muted"></i> Sin Ingreso</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="text-center text-muted p-4">
+        <p>© 2024 Osorno Runners. Plataforma de gestión desarrollada a medida.</p>
+    </footer>
+
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="modalTitle">Registrar Pago</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="payment-form">
+                        <input type="hidden" id="modal-integrante-id">
+                        <p id="last-payment-info" class="mb-3 fw-bold text-primary"></p>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="sexo" class="form-label">Sexo:</label>
+                                <input type="text" id="sexo" class="form-control" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="fecha-pago" class="form-label">Fecha de Pago:</label>
+                                <input type="date" id="fecha-pago" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="estado-pago" class="form-label">Estado:</label>
+                                <select id="estado-pago" class="form-select" required>
+                                    <option value="activo">Activo</option>
+                                    <option value="membresia">Membresía</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="valor-cuota" class="form-label">Valor Cuota ($):</label>
+                                <input type="number" id="valor-cuota" class="form-control" required readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cantidad-meses" class="form-label">Cantidad de Meses a Pagar:</label>
+                                <input type="number" id="cantidad-meses" class="form-control" value="1" min="1" max="12" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mes-inicio-pago" class="form-label">Mes de Inicio del Pago:</label>
+                                <select id="mes-inicio-pago" class="form-select" required></select>
+                            </div>
+                             <div class="col-12">
+                                <label for="observacion" class="form-label">Observación (Opcional):</label>
+                                <input type="text" id="observacion" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="payment-form" class="btn btn-brand-red"><i class="bi bi-check2-circle"></i> Registrar Pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- DATA ---
+        // Estructura de datos mejorada para incluir sexo
+        const masterMemberData = [
+            { name: "RODRIGO EDGARDO GARCES GUERRERO", sexo: "HOMBRE" }, { name: "XIMENA ODMETTE ARAVENA QUINTANA", sexo: "MUJER" }, { name: "CARLOS ALVAREZ SANTULLANO BUSCH", sexo: "HOMBRE" }, { name: "JESSICA ALEJANDRA ALVAREZ RUIZ", sexo: "MUJER" }, { name: "ROGERTH ALEJANDRO BENAVIDES SANDOVAL", sexo: "HOMBRE" }, { name: "GIANINNA PAZ CARE TERÁN", sexo: "MUJER" }, { name: "GLORIA SCHOPF KLENNER", sexo: "MUJER" }, { name: "ROBERTO CARABANTE CHAMIA", sexo: "HOMBRE" }, { name: "PABLO ANDRÉS VARAS SIRIANY", sexo: "HOMBRE" }, { name: "EDUARDO RODOLFO SALAZAR MATUS", sexo: "HOMBRE" }, { name: "GABRIELA LORENA ARAYA VASQUEZ", sexo: "MUJER" }, { name: "PATRICIA LORENA MELLA RETAMAL", sexo: "MUJER" }, { name: "CECILIA SALAZAR MATUS", sexo: "MUJER" }, { name: "SANDRA OVANDO VIDAL", sexo: "MUJER" }, { name: "IRIS LLANARETT PÜSCHEL GARNICA", sexo: "MUJER" }, { name: "SANDRA BERNARDA FARIAS PINO", sexo: "MUJER" }, { name: "FELIPE ANDRÉS AGUILAR VARGAS", sexo: "HOMBRE" }, { name: "JACQUELINE FUENTES PEREZ", sexo: "MUJER" }, { name: "ALEJANDRO BELTRAN GONZALEZ", sexo: "HOMBRE" }, { name: "GERMÁN ADOLFO BIELEFELDT VAN OOSTERWIJK", sexo: "HOMBRE" }, { name: "JOSE LUIS GALLARDO ROJAS", sexo: "HOMBRE" }, { name: "KAREN ALEJANDRA HERNANDEZ URIBE", sexo: "MUJER" }, { name: "MARIANNE MAKARENA CARRASCO MUÑOZ", sexo: "MUJER" }, { name: "ALEJANDRA AREVALO", sexo: "MUJER" }, { name: "DANIEL ANTONIO BAHAMONDE VALDEBENITO", sexo: "HOMBRE" }, { name: "EVELYN PAULINA ROMERO VELOSO", sexo: "MUJER" }, { name: "JOHANA ALEJANDRA MATUS BAHAMONDE", sexo: "MUJER" }, { name: "JORGE SEBASTIÁN ROJAS PACHECO", sexo: "HOMBRE" }, { name: "BAIRON ARIEL PÉREZ MANRÍQUEZ", sexo: "HOMBRE" }, { name: "NICOLE ALEJANDRA MORALES GARCÍA", sexo: "MUJER" }, { name: "JORGE ANDRÉS ESPINOZA VERGARA", sexo: "HOMBRE" }, { name: "NATALI ALEJANDRA MARTÍNEZ NAGUIL", sexo: "MUJER" }, { name: "JORGE ANDRÉS CATALÁN NEGRON", sexo: "HOMBRE" }, { name: "PAULA RUIZ LOZANO", sexo: "MUJER" }, { name: "CECILIA DEL CARMEN CAUCAO PAILLAN", sexo: "MUJER" }, { name: "NATALIA CARRASCO MANCILLA", sexo: "MUJER" }, { name: "CATHARINA VALERIA BIERMA HIDALGO", sexo: "MUJER" }, { name: "FABIÁN OSVALDO GAMBOA ROJAS", sexo: "HOMBRE" }, { name: "ÁLVARO JAVIER ROMÁN CASTILLO", sexo: "HOMBRE" }, { name: "YOHANA ANALIZ SANCHEZ GONZÁLEZ", sexo: "MUJER" }, { name: "KATTYA ESTEFANNY CANCINO AGÜERO", sexo: "MUJER" }, { name: "SOFÍA PAZ PACHECO OJEDA", sexo: "MUJER" }, { name: "JAVIERA BELÉN MUÑOZ VARGAS", sexo: "MUJER" }, { name: "ANDREA OJEDA", sexo: "MUJER" }, { name: "JOAQUÍN ANTONIO MELÉNDEZ PAIVA", sexo: "HOMBRE" }, { name: "JOHANA REBECA MANCILLA OLIVA", sexo: "MUJER" }, { name: "DANIELA MAKARENA L'HUISSIER PACHECO", sexo: "MUJER" }, { name: "FABIÁN BASCUR MONTENEGRO", sexo: "HOMBRE" }, { name: "MARCELO ISAIAS SILVA DIAZ", sexo: "HOMBRE" }, { name: "DARLING PATRICIA PALMA PEÑAILILLO", sexo: "MUJER" }, { name: "IGNACIA ANDREA PACHECO OJEDA", sexo: "MUJER" }, { name: "DANIELA ALEJANDRA NAUTO HERNÁNDEZ", sexo: "MUJER" }, { name: "ALEX JAVIER ASTETE RODRÍGUEZ", sexo: "HOMBRE" }, { name: "IGNACIO ARANEDA ALARCÓN", sexo: "HOMBRE" }, { name: "MATIAS FERNANDO FLORES BARRÍA", sexo: "HOMBRE" }, { name: "FRANCISCA CAROLINA MIGUEZ SALOM", sexo: "MUJER" }, { name: "JORGE ABEL HENRIQUEZ VARGAS", sexo: "HOMBRE" }, { name: "CINTIA ABIGAIL LOBOS CÁRDENAS", sexo: "MUJER" }, { name: "ESTELA BELÉN ESPARZA ALVAREZ", sexo: "MUJER" }, { name: "EDUARDO FELIPE CADAGAN VIDAL", sexo: "HOMBRE" }, { name: "INES SOLEDAD PAREDES MARTINEZ", sexo: "MUJER" }, { name: "MARÍA EUGENIA ALVAREZ LUCERO", sexo: "MUJER" }, { name: "BEATRIZ CONSUELO TEUBER GARRIDO", sexo: "MUJER" }
+        ];
+        
+        // Datos de pago iniciales. Ahora incluyen un 'estado'.
+        const rawData = [ { integrante: "IGNACIA PACHECO", meses: 1, meses_de_pago: "ENE", estado: 'activo' }, { integrante: "JOHANA REBECA MANCILLA OLIVA", meses: 1, meses_de_pago: "ENE", estado: 'activo' }, { integrante: "PATRICIA LORENA MELLA RETAMAL", meses: 2, meses_de_pago: "ENE-FEB", estado: 'activo' }, { integrante: "CECILIA DEL CARMEN CUCUAO", meses: 2, meses_de_pago: "ENE-FEB", estado: 'activo' }, { integrante: "GABRIELA LORENA ARAYA VASQUEZ", meses: 1, meses_de_pago: "ENE", estado: 'membresia' }, { integrante: "JORGE ESPINOZA", meses: 2, meses_de_pago: "ENE-FEB", estado: 'membresia' }, { integrante: "GIANINNA PAZ CARE TERÁN", meses: 2, meses_de_pago: "FEB-MAR", estado: 'activo' }, { integrante: "BEATRIZ TEUBER", meses: 2, meses_de_pago: "MAR-ABR", estado: 'activo' } ];
+        
+        // --- GLOBALS & DOM ELEMENTS ---
+        const VALOR_ACTIVO = 10000;
+        const VALOR_MEMBRESIA = 5000;
+        const monthMap = { "ENE": 0, "FEB": 1, "MAR": 2, "ABR": 3, "MAY": 4, "JUN": 5, "JUL": 6, "AGO": 7, "SEP": 8, "OCT": 9, "NOV": 10, "DIC": 11 };
+        const monthNames = Object.keys(monthMap);
+        let paymentStatus = {}; 
+        
+        const paymentForm = document.getElementById('payment-form');
+        const tableBody = document.getElementById('payment-table-body');
+        const paymentModalInstance = new bootstrap.Modal(document.getElementById('paymentModal'));
+
+        // --- APP LOGIC ---
+        const normalizeName = (name) => name.toUpperCase().replace(/\s+/g, ' ').trim().replace(/[ÁÉÍÓÚÜ]/g, (match) => ({'Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U','Ü':'U'})[match]);
+        
+        function renderApp() {
+            processPaymentData();
+            renderPaymentTable();
+        }
+
+        function processPaymentData() {
+            paymentStatus = {}; 
+            masterMemberData.forEach(member => {
+                const normalized = normalizeName(member.name);
+                paymentStatus[normalized] = { id: normalized, name: member.name.trim(), sexo: member.sexo, months: Array(12).fill(false) };
+            });
+
+            rawData.forEach(record => {
+                if (!record.integrante || record.meses === 0) return;
+                const normalizedName = normalizeName(record.integrante);
+                if (!paymentStatus[normalizedName]) return; // Solo procesar pagos de miembros en la lista maestra
+                
+                let startMonthIndex = monthMap[record.meses_de_pago.split('-')[0].toUpperCase()] ?? -1;
+                if (startMonthIndex === -1) return;
+
+                for (let i = 0; i < record.meses; i++) {
+                    const currentMonthIndex = startMonthIndex + i;
+                    if (currentMonthIndex < 12) {
+                        paymentStatus[normalizedName].months[currentMonthIndex] = record.estado || 'activo';
+                    }
+                }
+            });
+        }
+
+        function renderPaymentTable() {
+            tableBody.innerHTML = '';
+            const sortedIntegrantes = Object.values(paymentStatus).sort((a, b) => a.name.localeCompare(b.name));
+            sortedIntegrantes.forEach(member => {
+                const row = document.createElement('tr');
+                
+                const nameCell = document.createElement('td');
+                nameCell.className = 'integrante-col';
+                nameCell.innerHTML = `<a href="#" class="integrante-link" data-integrante-id="${member.id}">${member.name}</a>`;
+                row.appendChild(nameCell);
+                
+                const firstPaymentIndex = member.months.findIndex(state => state !== false);
+                let totalAnual = 0;
+
+                member.months.forEach((state, index) => {
+                    const monthCell = document.createElement('td');
+                    switch(state) {
+                        case 'activo':
+                            monthCell.innerHTML = '<i class="bi bi-check-circle-fill text-success"></i>';
+                            totalAnual += VALOR_ACTIVO;
+                            break;
+                        case 'membresia':
+                            monthCell.innerHTML = '<i class="bi bi-patch-check-fill icon-membresia"></i>';
+                            totalAnual += VALOR_MEMBRESIA;
+                            break;
+                        default: // false
+                            if (firstPaymentIndex === -1 || index >= firstPaymentIndex) {
+                                monthCell.innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i>';
+                            } else {
+                                monthCell.innerHTML = '<i class="bi bi-dash-circle text-muted"></i>';
+                            }
+                    }
+                    row.appendChild(monthCell);
+                });
+
+                const totalAnualCell = document.createElement('td');
+                totalAnualCell.className = 'total-anual-col';
+                totalAnualCell.textContent = totalAnual.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' });
+                row.appendChild(totalAnualCell);
+
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // --- EVENT HANDLERS ---
+        const modal = {
+            title: document.getElementById('modalTitle'),
+            integranteIdInput: document.getElementById('modal-integrante-id'),
+            lastPaymentInfo: document.getElementById('last-payment-info'),
+            sexo: document.getElementById('sexo'),
+            fechaPago: document.getElementById('fecha-pago'),
+            estadoPago: document.getElementById('estado-pago'),
+            valorCuota: document.getElementById('valor-cuota'),
+            mesInicioPago: document.getElementById('mes-inicio-pago')
+        };
+        
+        // Poblar el select de meses una sola vez
+        monthNames.forEach((name, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = name;
+            modal.mesInicioPago.appendChild(option);
+        });
+
+        tableBody.addEventListener('click', function(e) {
+            if (e.target.matches('.integrante-link')) {
+                e.preventDefault();
+                const integranteId = e.target.dataset.integranteId;
+                const memberStatus = paymentStatus[integranteId];
+
+                modal.title.textContent = `Registrar Pago para ${memberStatus.name}`;
+                modal.integranteIdInput.value = integranteId;
+                modal.sexo.value = memberStatus.sexo;
+                modal.fechaPago.valueAsDate = new Date();
+                
+                const lastPaidMonthIndex = memberStatus.months.map(s => s !== false).lastIndexOf(true);
+                
+                if (lastPaidMonthIndex > -1) {
+                    modal.lastPaymentInfo.innerHTML = `<i class="bi bi-info-circle-fill"></i> Último mes pagado: <strong>${monthNames[lastPaidMonthIndex]}</strong>`;
+                    modal.mesInicioPago.value = (lastPaidMonthIndex + 1) % 12;
+                } else {
+                    modal.lastPaymentInfo.innerHTML = `<i class="bi bi-info-circle-fill"></i> No tiene pagos registrados en 2025.`;
+                    modal.mesInicioPago.value = 0;
+                }
+                
+                // Disparar manualmente el change para establecer el valor inicial de la cuota
+                modal.estadoPago.dispatchEvent(new Event('change'));
+                paymentModalInstance.show();
+            }
+        });
+        
+        modal.estadoPago.addEventListener('change', function() {
+            modal.valorCuota.value = this.value === 'activo' ? VALOR_ACTIVO : VALOR_MEMBRESIA;
+        });
+
+        paymentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const integranteId = modal.integranteIdInput.value;
+            if (!integranteId) return;
+
+            const nuevoPago = {
+                integrante: paymentStatus[integranteId].name,
+                meses: parseInt(document.getElementById('cantidad-meses').value, 10),
+                meses_de_pago: monthNames[parseInt(modal.mesInicioPago.value, 10)],
+                estado: modal.estadoPago.value,
+                fecha_pago: modal.fechaPago.value
+            };
+            rawData.push(nuevoPago);
+            
+            renderApp();
+            paymentModalInstance.hide();
+            alert(`¡Pago registrado para ${paymentStatus[integranteId].name}! La tabla ha sido actualizada.`);
+            paymentForm.reset();
+        });
+
+        // --- INITIALIZE ---
+        renderApp();
+    });
+    </script>
+</body>
+</html>
